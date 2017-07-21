@@ -33,7 +33,7 @@ class MainController extends Controller
 
         // get the current user id
         //
-        dd($data ) ;
+        var_dump($data["entry"] ) ;
        // die() ;
 
     }
