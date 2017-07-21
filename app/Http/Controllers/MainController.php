@@ -18,7 +18,7 @@ class MainController extends Controller
 
         // get the current user id
         //
-        print_r($data ) ;
+        dd($data ) ;
        // die() ;
 
     }
