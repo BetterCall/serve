@@ -10,7 +10,7 @@ class MainController extends Controller
 {
     public function facebookReceive(Request $request ) {
 
-        $data = $request ;
+        $data = $request->all() ;
 
         $firebase = app('firebase') ;
         $firebase->getDatabase()->getReference("/users") ;
