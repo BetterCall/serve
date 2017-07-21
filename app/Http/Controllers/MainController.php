@@ -15,7 +15,7 @@ class MainController extends Controller
         $users = $firebase->getDatabase()->getReference("/users") ;
 
         //$request value
-        $data = $request->all() ;
+        $data = $request->input("entry") ;
 /*
         foreach( $users as $user )  {
             if ( !isset($user->account["facebook"] )  ) {
@@ -27,9 +27,9 @@ class MainController extends Controller
         }
 */
         $ref = $firebase->getDatabase()->getReference("/testPost/" . rand(1, 500)) ;
-        var test = json_decode($request->getContent(), true);
+        //var $test = json_decode($request->getContent(), true);
 
-        $ref->update( test ) ;
+        $ref->update( $data ) ;
         //$ref->update($data["entry"][0]->uid )   ;
         //$ref->update($data["entry"][0].uid )   ;
 
