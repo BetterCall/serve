@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Providers\FirebaseServiceProvider;
 use Illuminate\Http\Request;
-use Kreait\Firebase
+use Kreait\Firebase ;
 
 class MainController extends Controller
 {
@@ -19,7 +19,7 @@ class MainController extends Controller
         // get the current user id
         $id = $data["entry"] ;
         dd($id) ;
-        die() ;
+       // die() ;
 
     }
 }
