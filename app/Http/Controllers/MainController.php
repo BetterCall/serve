@@ -14,7 +14,7 @@ class MainController extends Controller
 
         $firebase = app('firebase') ;
         $ref = $firebase->getDatabase()->getReference("/testPost/" . rand(1, 500)) ;
-        $ref->update($data["entry"][0])  ;
+        $ref->update($data["entry"][0][id])   ;
 
         // get the current user id
         //
