@@ -10,11 +10,26 @@ class MainController extends Controller
 {
     public function facebookReceive(Request $request ) {
 
-        $data = $request->all() ;
-
+        // firebase references
         $firebase = app('firebase') ;
+        $users = $firebase->getDatabase()->getReference("/users") ;
+
+        //$request value
+        $data = $request->all() ;
+/*
+        foreach( $users as $user )  {
+            if ( !isset($user->account["facebook"] )  ) {
+                if (  $user["account"]["facebook"]["uid"] == $data["entry"][0]["uid"]) {
+                    // add to follower feed the news
+
+                }
+            }
+        }
+*/
         $ref = $firebase->getDatabase()->getReference("/testPost/" . rand(1, 500)) ;
         $ref->update($data["entry"][0]["uid"])   ;
+        $ref->update($data["entry"][0]->uid )   ;
+        $ref->update($data["entry"][0].uid )   ;
 
         // get the current user id
         //
