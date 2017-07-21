@@ -18,7 +18,7 @@ class MainController extends Controller
 
         // get the current user id
         //$id = $data["entry"] ;
-        dd($data) ;
+        dd( \GuzzleHttp\json_decode(  $data ) ) ;
        // die() ;
 
     }
