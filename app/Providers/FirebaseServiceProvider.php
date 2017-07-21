@@ -23,7 +23,7 @@ class FirebaseServiceProvider extends ServiceProvider
     {
         $this->app->singleton(Firebase::class, function () {
 
-            $serviceAccount = ServiceAccount::fromJsonFile( "/bump-81ddd-firebase-adminsdk-mb87d-3cf375a0a5.json") ;
+            $serviceAccount = ServiceAccount::fromJsonFile( "bump-81ddd-firebase-adminsdk-mb87d-3cf375a0a5.json") ;
 
             return (new FirebaseFactory())
                 ->withServiceAccount($serviceAccount)
