@@ -17,8 +17,8 @@ class MainController extends Controller
 
 
         // get the current user id
-        $id = $data["entry"] ;
-        dd($id) ;
+        //$id = $data["entry"] ;
+        dd($data) ;
        // die() ;
 
     }
