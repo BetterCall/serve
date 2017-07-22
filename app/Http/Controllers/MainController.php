@@ -50,8 +50,14 @@ class MainController extends Controller
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
 
-        $firebase.startAt("o").endAt('0').once("value" , function($snap) {
-            var_dump($snap) ;
-        });
+        $query = new Query() ;
+
+        $query
+            ->orderByChild("account/facebook/uid")
+            ->equalTo("10213440167502854") ;
+
+
+        dd($users->query($query))  ;
+        die() ;
     }
 }
