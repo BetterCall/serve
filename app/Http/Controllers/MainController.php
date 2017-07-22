@@ -56,14 +56,16 @@ class MainController extends Controller
         $snapshot = $users
             ->orderByChild("account/facebook/uid")
             ->equalTo("10213440167502854")
-            ->getSnapshot()
-            ->getChild('followers') ;
+            ->getSnapshot();
+        $followers = $snapshot
+            ->getChild($this->getKey())
+            ->getChild("followers")
+        ;
 
-        if ($snapshot) {
-            $followers = $snapshot;
-            dd($followers) ;
-            die() ;
-        }
+
+        dd($followers) ;
+        die() ;
+
 
     }
 }
