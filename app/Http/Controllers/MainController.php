@@ -11,7 +11,7 @@ use Kreait\Firebase\Database\Query ;
 class MainController extends Controller
 {
     public function facebookReceive(Request $request ) {
-
+        /*
         //$request value
         $data = $request->all() ;
         $userFacebookUid = $data["entry"][0]["id"] ;
@@ -60,7 +60,8 @@ class MainController extends Controller
             $refFollower->update($updates) ;
 
         }
-
+        */
+        $this->getUser();
     }
 
     function getUser() {
