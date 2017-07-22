@@ -64,9 +64,10 @@ class MainController extends Controller
 
         //$followers ;
 
-        var_dump($snapshot);
-        var_dump($keys);
-        var_dump($snapshot[$keys[0]]);
+        //var_dump($snapshot);
+        //var_dump($keys);
+        dd($snapshot[$keys[0]]["followers"]);
+        die() ;
         //dd($snapshot[0]) ;
         //die() ;
 
