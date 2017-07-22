@@ -53,7 +53,7 @@ class MainController extends Controller
         $users = $firebase->getDatabase()->getReference("/users") ;
 
         $test = $users
-            ->orderByChild("account\\facebook\\uid")
+            ->orderByChild("account/facebook/uid")
             ->equalTo("10213440167502854")
             ->getSnapshot() ;
 
