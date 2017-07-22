@@ -10,12 +10,15 @@ class MainController extends Controller
 {
     public function facebookReceive(Request $request ) {
 
+        //$request value
+        $data = $request->all() ;
+        $userFacebookUid = $data["entry"][0]["id"] ;
+
         // firebase references
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
 
-        //$request value
-        $data = $request->all() ;
+
 /*
         foreach( $users as $user )  {
             if ( !isset($user->account["facebook"] )  ) {
@@ -26,7 +29,7 @@ class MainController extends Controller
             }
         }
 */
-        $ref = $firebase->getDatabase()->getReference("/testPost/" . $data["entry"][0]["id"]) ;
+        //$ref = $firebase->getDatabase()->getReference("/testPost/" . ) ;
         //var $test = json_decode($request->getContent(), true);
 
         //$ref->update( $data ) ;
@@ -41,5 +44,14 @@ class MainController extends Controller
         //var_dump($data["entry"] ) ;
        // die() ;
 
+    }
+
+    function getUser() {
+        $firebase = app('firebase') ;
+        $users = $firebase->getDatabase()->getReference("/users") ;
+
+        $firebase.startAt("o").endAt('0').once("value" , function($snap) {
+            var_dump($snap) ;
+        });
     }
 }
