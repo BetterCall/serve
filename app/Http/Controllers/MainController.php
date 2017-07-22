@@ -58,7 +58,7 @@ class MainController extends Controller
             ->equalTo("10213440167502854")
             ->getSnapshot();
         $followers = $snapshot
-            ->getChild($this->getKey())
+            ->getChild($snapshot->getKey())
             ->getChild("followers")
         ;
 
