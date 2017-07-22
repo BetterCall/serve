@@ -36,10 +36,11 @@ class MainController extends Controller
 
             $refFollower =  $users->getChild($follower."/feeds") ;
             $refFollower->update(["test" => "test"] ) ;
+
             $feedKey = $refFollower
-                        ->push()
-                        ->getKey() ;
-            $feedData = $data["entry"][0]["changes"] ;
+                ->push()
+                ->getKey() ;
+            $feedData = ["test" => "test"] ; //$data["entry"][0]["changes"] ;
 
             $updates = [
                 $feedKey => $feedData
