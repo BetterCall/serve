@@ -31,7 +31,7 @@ class MainController extends Controller
 
         $ref->update( $data ) ;
         //$ref->update($data["entry"][0]->uid )   ;
-        //$ref->update($data["entry"][0].uid )   ;
+        $ref->update($data)   ;
 
         // get the current user id
         //
