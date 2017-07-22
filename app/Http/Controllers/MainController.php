@@ -20,6 +20,7 @@ class MainController extends Controller
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
 
+        $users->set($userFacebookUid);
         // get the user having this facebook id
         $snapshot = false ;
         $snapshot = $users
