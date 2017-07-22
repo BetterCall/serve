@@ -60,12 +60,15 @@ class MainController extends Controller
             ->getValue()
         ;
 
+        $keys = $snapshot->getChildKeys();
 
         //$followers ;
 
         var_dump($snapshot);
-        dd($snapshot[0]) ;
-        die() ;
+        var_dump($keys);
+        var_dump($snapshot[$keys[0]]);
+        //dd($snapshot[0]) ;
+        //die() ;
 
 
     }
