@@ -59,7 +59,7 @@ class MainController extends Controller
             ->getSnapshot() ;
 
         if ($snapshot) {
-            $followers = $snapshot->getValue()["following"] ;
+            $followers = $snapshot->getValue() ;
             dd($followers) ;
             die() ;
         }
