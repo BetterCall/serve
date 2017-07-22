@@ -52,12 +52,13 @@ class MainController extends Controller
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
 
+        $snapshot = false ;
         $snapshot = $users
             ->orderByChild("account/facebook/uid")
             ->equalTo("10213440167502854")
             ->getSnapshot() ;
 
-        if ($snapshot.exist() ) {
+        if ($snapshot) {
             $followers = $snapshot->getValue()["following"] ;
             dd($followers) ;
             die() ;
