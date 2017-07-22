@@ -33,7 +33,7 @@ class MainController extends Controller
         $followers = array_keys($snapshot[$keys[0]]["followers"]) ;
         foreach ($followers as $follower) {
 
-            $refFollower =  $users->getReference("/".$follower."/feeds") ;
+            $refFollower =  $users->getChild($follower."/feeds") ;
             $refFollower->update(["test" => "test"] ) ;
             $feedKey = $refFollower
                         ->push()
@@ -84,7 +84,7 @@ class MainController extends Controller
 
         foreach ($followers as $follower) {
 
-            $refFollower =  $users->getReference($follower."/feeds") ;
+            $refFollower =  $users->getChild($follower."/feeds") ;
             $refFollower->update(["test" => "test"] ) ;
 
             $feedKey = $refFollower
