@@ -20,31 +20,36 @@ class MainController extends Controller
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
 
+        // get the user having this facebook id
+        $snapshot = false ;
+        $snapshot = $users
+            ->orderByChild("account/facebook/uid")
+            ->equalTo($userFacebookUid)
+            ->getSnapshot()
+            ->getValue()
+        ;
+        $keys = array_keys($snapshot);
 
-/*
-        foreach( $users as $user )  {
-            if ( !isset($user->account["facebook"] )  ) {
-                if (  $user["account"]["facebook"]["uid"] == $data["entry"][0]["uid"]) {
-                    // add to follower feed the news
+        $followers = array_keys($snapshot[$keys[0]]["followers"]) ;
+        foreach ($followers as $follower) {
 
-                }
-            }
+            $refFollower =  $users->getReference("/".$follower."/feeds") ;
+            $feedKey = $refFollower
+                        ->push()
+                        ->getKey() ;
+            $feedData = $data["entry"][0]["changes"] ;
+
+            $updates = [
+                $feedKey => $feedData
+            ] ;
+            $refFollower->update($updates) ;
+
         }
-*/
-        //$ref = $firebase->getDatabase()->getReference("/testPost/" . ) ;
-        //var $test = json_decode($request->getContent(), true);
-
-        //$ref->update( $data ) ;
-        $ref->set($data["entry"][0]["changes"])   ;
+        //$ref->set($data["entry"][0]["changes"])   ;
         //$ref->set($data["entry"][0]["changes"])   ;
         //$ref->update($data)   ;
 
-        // get the current user id
-        //
-        //dd(json_decode($request->getContent(), true));
 
-        //var_dump($data["entry"] ) ;
-       // die() ;
 
     }
 
@@ -52,21 +57,19 @@ class MainController extends Controller
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
 
-        $snapshot = false ;
-        $snapshot = $users
-            ->orderByChild("account/facebook/uid")
-            ->equalTo("10213440167502854")
-            ->getSnapshot()
-            ->getValue()
-        ;
 
-        $keys = array_keys($snapshot);
+
+
 
         //$followers ;
 
         //var_dump($snapshot);
         //var_dump($keys);
-        dd($snapshot[$keys[0]]["followers"]);
+
+
+
+
+        dd();
         die() ;
         //dd($snapshot[0]) ;
         //die() ;
