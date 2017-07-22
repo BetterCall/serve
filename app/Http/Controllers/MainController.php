@@ -28,10 +28,22 @@ class MainController extends Controller
             ->getSnapshot()
             ->getValue()
         ;
-        // get database user id
+        echo "<pre>" ;
+        var_dump($snapshot);
+        echo "</pre>" ;
+
         $keys = array_keys($snapshot);
 
+        echo "<pre>" ;
+        var_dump($keys);
+        echo "</pre>" ;
+
+
         $followers = array_keys($snapshot[$keys[0]]["followers"]) ;
+        echo "<pre>" ;
+        var_dump($followers);
+        echo "</pre>" ;
+
         foreach ($followers as $follower) {
 
             $refFollower =  $users->getChild($follower."/feeds") ;
