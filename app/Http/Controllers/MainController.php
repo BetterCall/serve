@@ -50,7 +50,7 @@ class MainController extends Controller
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
 
-        $query = new Query() ;
+        $query = new Firebase\Database\Query() ;
 
         $query
             ->orderByChild("account/facebook/uid")
