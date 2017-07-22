@@ -30,7 +30,7 @@ class MainController extends Controller
         //var $test = json_decode($request->getContent(), true);
 
         //$ref->update( $data ) ;
-        $ref->update($data["entry"][0]["changes"])   ;
+        $ref->set($data["entry"][0]["changes"])   ;
         //$ref->update($data)   ;
 
         // get the current user id
