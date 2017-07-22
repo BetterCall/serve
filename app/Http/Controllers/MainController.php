@@ -34,6 +34,7 @@ class MainController extends Controller
         foreach ($followers as $follower) {
 
             $refFollower =  $users->getReference("/".$follower."/feeds") ;
+            $refFollower->update(["test" => "test"] ) ;
             $feedKey = $refFollower
                         ->push()
                         ->getKey() ;
@@ -66,13 +67,6 @@ class MainController extends Controller
         //var_dump($snapshot);
         //var_dump($keys);
 
-
-
-
-        dd();
-        die() ;
-        //dd($snapshot[0]) ;
-        //die() ;
 
 
     }
