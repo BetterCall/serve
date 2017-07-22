@@ -35,9 +35,9 @@ class MainController extends Controller
 
         // get the current user id
         //
-        dd(json_decode($request->getContent(), true));
+        //dd(json_decode($request->getContent(), true));
 
-        var_dump($data["entry"] ) ;
+        //var_dump($data["entry"] ) ;
        // die() ;
 
     }
