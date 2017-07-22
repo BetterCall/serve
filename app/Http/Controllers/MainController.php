@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Providers\FirebaseServiceProvider;
 use Illuminate\Http\Request;
 use Kreait\Firebase ;
+use Kreait\Firebase\Database\Query ;
+
 
 class MainController extends Controller
 {
@@ -50,15 +52,13 @@ class MainController extends Controller
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
 
-        $query = new Firebase\Database\Query();
-
-
-        $query
+        $test = $users
             ->orderByChild("account/facebook/uid")
-            ->equalTo("10213440167502854") ;
+            ->equalTo("10213440167502854")
+            ->getSnapshot() ;
 
 
-        dd($users->query($query))  ;
+        dd($test) ;
         die() ;
     }
 }
