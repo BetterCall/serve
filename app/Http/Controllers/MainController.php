@@ -20,7 +20,6 @@ class MainController extends Controller
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
 
-       // $users->set($userFacebookUid);
         // get the user having this facebook id
         $snapshot = false ;
         $snapshot = $users
@@ -29,6 +28,7 @@ class MainController extends Controller
             ->getSnapshot()
             ->getValue()
         ;
+        // get database user id
         $keys = array_keys($snapshot);
 
         $followers = array_keys($snapshot[$keys[0]]["followers"]) ;
