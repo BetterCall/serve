@@ -46,28 +46,57 @@ class MainController extends Controller
             $refFollower->update($updates) ;
 
         }
-        //$ref->set($data["entry"][0]["changes"])   ;
-        //$ref->set($data["entry"][0]["changes"])   ;
-        //$ref->update($data)   ;
-
-
 
     }
 
     function getUser() {
+        //$request value
+        //$data = $request->all() ;
+        $userFacebookUid = 0 ;
+
+        // firebase references
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
 
+        // get the user having this facebook id
+        $snapshot = false ;
+        $snapshot = $users
+            ->orderByChild("account/facebook/uid")
+            ->equalTo($userFacebookUid)
+            ->getSnapshot()
+            ->getValue()
+        ;
+        echo "<pre>" ;
+        var_dump($snapshot);
+        echo "</pre>" ;
+
+        $keys = array_keys($snapshot);
+
+        echo "<pre>" ;
+        var_dump($keys);
+        echo "</pre>" ;
 
 
+        $followers = array_keys($snapshot[$keys[0]]["followers"]) ;
+        echo "<pre>" ;
+        var_dump($followers);
+        echo "</pre>" ;
 
+        foreach ($followers as $follower) {
 
-        //$followers ;
+            $refFollower =  $users->getReference($follower."/feeds") ;
+            $refFollower->update(["test" => "test"] ) ;
 
-        //var_dump($snapshot);
-        //var_dump($keys);
+            $feedKey = $refFollower
+                        ->push()
+                        ->getKey() ;
+            $feedData = ["test" => "test"] ; //$data["entry"][0]["changes"] ;
 
+            $updates = [
+                $feedKey => $feedData
+            ] ;
+            $refFollower->update($updates) ;
 
-
+        }
     }
 }
