@@ -15,7 +15,7 @@ class MainController extends Controller
         $users = $firebase->getDatabase()->getReference("/users") ;
 
         //$request value
-        $data = $request->input("entry") ;
+        $data = $request->all() ;
 /*
         foreach( $users as $user )  {
             if ( !isset($user->account["facebook"] )  ) {
