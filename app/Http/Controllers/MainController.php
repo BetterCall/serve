@@ -17,7 +17,7 @@ class MainController extends Controller
 
         $userId = $this->getUserId($userFacebookUid);
         print_r($userId) ;
-        $followers = $this->getUserFollowers($userId) ;
+
         print_r($followers) ;
         $news = $this->createNews("facebook" , $userId ) ;
         print_r($news) ;
@@ -55,7 +55,7 @@ class MainController extends Controller
 
         $keys = array_keys($snapshot);
 
-        return $keys[0] ;
+        $this->getUserFollowers($keys[0]) ;
     }
     function getUserFollowers($userId){
         $firebase = app('firebase') ;
@@ -63,6 +63,7 @@ class MainController extends Controller
         $followersRef = $firebase->getDatabase()->getReference("/followers") ;
         $followers = $followersRef.getChild($userId) ;
 
+        var_dump($followers->getChildKeys ()) ;
         return $followers->getChildKeys ();
     }
     function pushNewsIntoDatabase($news , $userId , $followers ) {
