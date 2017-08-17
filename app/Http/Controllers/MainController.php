@@ -58,11 +58,8 @@ class MainController extends Controller
         $followersRef = $firebase->getDatabase()->getReference("/followers") ;
         $followers = $followersRef->getChild($userId) ;
 
-        $news = [
-            "source" => "facebook" ,
-            "uid"    => $userId
-        ] ;
-        $this->pushNewsIntoDatabase($news , $userId , $followers->getChildKeys () ) ;
+
+        $this->createNews("facebook" , $userId , $followers->getChildKeys ()  ) ;
 
     }
     function pushNewsIntoDatabase($news , $userId , $followers ) {
@@ -72,8 +69,6 @@ class MainController extends Controller
         $newsRef = $firebase->getDatabase()-> getReference("/news") ;
         $userNewsRef = $firebase->getDatabase()-> getReference("/user_news/".$userId) ;
         $feedRef = $firebase->getDatabase()-> getReference("/feed") ;
-
-        $newsRef->set(['test' => "test"]) ;
 
         //get key of news
         $feedKey = $newsRef
@@ -96,14 +91,14 @@ class MainController extends Controller
         }
 
     }
-    function createNews($socialMedia , $userId , $data) {
+    function createNews($socialMedia , $userId ,$followers ) {
 
         $news = [
             "source" => "facebook" ,
             "uid"    => $userId
         ] ;
 
-        return $news ;
+        return $this->pushNewsIntoDatabase($news , $userId , $followers ) ;
     }
 
     function getUserTest( ) {
