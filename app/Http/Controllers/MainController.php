@@ -16,13 +16,12 @@ class MainController extends Controller
         $userFacebookUid = $data["entry"][0]["id"] ;
 
         $userId = $this->getUserId($userFacebookUid);
+        print_r($userId);
         $followers = $this->getUserFollowers($userId) ;
-
         $news = $this->createNews("facebook" , $userId ) ;
 
         pushNewsIntoDatabase( $news , $userId , $followers ) ;
 
-        //$this->createNews("facebook", $data["entry"][0]["id"] , $data["entry"][0]["changes"] ) ;
 
     }
 
@@ -65,7 +64,6 @@ class MainController extends Controller
 
         return $followers->getChildKeys ();
     }
-
     function pushNewsIntoDatabase($news , $userId , $followers ) {
 
         // firebase references
@@ -95,8 +93,6 @@ class MainController extends Controller
         }
 
     }
-
-
     function createNews($socialMedia , $userId , $data) {
 
         $news = [
