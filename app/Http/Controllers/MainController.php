@@ -17,7 +17,7 @@ class MainController extends Controller
 
         $userId = $this->getUserId($userFacebookUid);
 
-        return response() ;
+
 
     }
 
@@ -89,6 +89,8 @@ class MainController extends Controller
             $refFollower =  $feedRef->getChild($follower) ;
             $refFollower->update( [$feedKey => true] ) ;
         }
+
+        return response("", 200) ;
 
     }
     function createNews($socialMedia , $userId ,$followers ) {
