@@ -18,8 +18,9 @@ class MainController extends Controller
         $userFacebookUid = $data["entry"][0]["id"] ;
 
         if ( $data != $this->lastReq ){
+            $this->lastReq = $data["entry"] ;
             $userId = $this->getUserId($userFacebookUid);
-            $this->lastReq = $data ;
+
         } else {
             return http_response_code(200) ;
 
