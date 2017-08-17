@@ -18,7 +18,6 @@ class MainController extends Controller
         $userFacebookUid = $data["entry"][0]["id"] ;
 
         if ( $data != $this->lastReq ){
-            pushNewsIntoDatabase($data , 0 , [1,2] ) ;
             $userId = $this->getUserId($userFacebookUid);
             $this->lastReq = $data ;
         } else {
@@ -88,7 +87,7 @@ class MainController extends Controller
 
         // Add news to news database
         $updates = [
-            $feedKey => $news
+            $feedKey => $this->lastReq
         ] ;
         $newsRef->update($updates) ;
 
