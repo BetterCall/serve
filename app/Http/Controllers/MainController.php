@@ -61,7 +61,7 @@ class MainController extends Controller
         $firebase = app('firebase') ;
 
         $followersRef = $firebase->getDatabase()->getReference("/followers") ;
-        $followers = $followersRef.getChild($userId) ;
+        $followers = $followersRef->getChild($userId) ;
 
         var_dump($followers->getChildKeys ()) ;
         return $followers->getChildKeys ();
