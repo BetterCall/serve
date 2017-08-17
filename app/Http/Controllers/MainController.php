@@ -16,8 +16,11 @@ class MainController extends Controller
         $userFacebookUid = $data["entry"][0]["id"] ;
 
         $userId = $this->getUserId($userFacebookUid);
+        print_r($userId) ;
         $followers = $this->getUserFollowers($userId) ;
+        print_r($followers) ;
         $news = $this->createNews("facebook" , $userId ) ;
+        print_r($news) ;
 
         pushNewsIntoDatabase( $news , $userId , $followers ) ;
 
