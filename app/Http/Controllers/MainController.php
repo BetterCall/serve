@@ -15,7 +15,7 @@ class MainController extends Controller
         $data = $request->all() ;
         $userFacebookUid = $data["entry"][0]["id"] ;
 
-        $userId = $this->getUserId($data["entry"][0]["id"]);
+        $userId = $this->getUserId($userFacebookUid);
         $followers = $this->getUserFollowers($userId) ;
 
         $news = $this->createNews("facebook" , $userId ) ;
