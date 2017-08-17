@@ -11,11 +11,11 @@ use Kreait\Firebase\Database\Query ;
 class MainController extends Controller
 {
     public function facebookReceive(Request $request ) {
-        /*
+
         //$request value
         $data = $request->all() ;
         $userFacebookUid = $data["entry"][0]["id"] ;
-
+        /*
         // firebase references
         $firebase = app('firebase') ;
         $users = $firebase->getDatabase()->getReference("/users") ;
@@ -62,6 +62,62 @@ class MainController extends Controller
         }
         */
         $this->getUser();
+        $this->createNews("facebook", $data["entry"][0]["id"] , $data["entry"][0]["changes"] ) ;
+
+    }
+
+
+    function createNews($socialMedia , $id , $data) {
+        // firebase references
+        $firebase = app('firebase') ;
+        $users = $firebase->getDatabase()->getReference("/users") ;
+        $mediasRef = $firebase->getDatabase()-> getReference("/media") ;
+
+        $snapshot = false
+        $snapshot = $mediasRef
+            -> orderByChild("uid")
+            -> equalTo( $id )
+            ->getSnapshot()
+            -> getValue() ;
+        // get the user having this facebook id
+        //$snapshot = false ;
+        /*$snapshot = $users
+            ->orderByChild("account/". $socialMedia ."/uid")
+            ->equalTo($id)
+            ->getSnapshot()
+            ->getValue()
+        ;
+        */
+        echo "<pre>" ;
+        var_dump($snapshot);
+        echo "</pre>" ;
+
+        // get snapshot keys
+        $keys = array_keys($snapshot);
+        $userId = $keys[0]  ;
+
+        $followers = array_keys (
+            $snapshot[$userId]["followers"]
+        ) ;
+
+        foreach ($followers as $follower) {
+
+            $refFollower =  $users->getChild($follower."/feeds") ;
+            $refFollower->update(["test" => "test"] ) ;
+
+            $feedKey = $refFollower
+                ->push()
+                ->getKey() ;
+            $feedData = ["test" => "test"] ; //$data["entry"][0]["changes"] ;
+
+            $updates = [
+                $feedKey => $feedData
+            ] ;
+            $refFollower->update($updates) ;
+
+        }
+    }
+
     }
 
     function getUser() {

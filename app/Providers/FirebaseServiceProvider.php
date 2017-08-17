@@ -27,8 +27,7 @@ class FirebaseServiceProvider extends ServiceProvider
 
             return (new FirebaseFactory())
                 ->withServiceAccount($serviceAccount)
-                ->withDatabaseUri('https://bump-81ddd.firebaseio.com/
-')
+                ->withDatabaseUri("https://feed-72bdb.firebaseio.com/")
                 ->create();
         });
 
