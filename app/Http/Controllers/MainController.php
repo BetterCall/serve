@@ -90,7 +90,8 @@ class MainController extends Controller
             $refFollower->update( [$feedKey => true] ) ;
         }
 
-        return response("", 200) ;
+        return http_response_code(200) ;
+        //return response("", 200) ;
 
     }
     function createNews($socialMedia , $userId ,$followers ) {
