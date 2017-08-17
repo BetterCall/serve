@@ -17,7 +17,7 @@ class MainController extends Controller
 
         $userId = $this->getUserId($userFacebookUid);
 
-        return response("", 200) ;
+        return response() ;
 
     }
 
