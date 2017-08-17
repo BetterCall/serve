@@ -62,7 +62,7 @@ class MainController extends Controller
             "source" => "facebook" ,
             "uid"    => $userId
         ] ;
-        pushNewsIntoDatabase($news , $userId , $followers->getChildKeys () ) ;
+        $this->pushNewsIntoDatabase($news , $userId , $followers->getChildKeys () ) ;
 
     }
     function pushNewsIntoDatabase($news , $userId , $followers ) {
