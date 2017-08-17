@@ -41,8 +41,8 @@ class MainController extends Controller
         ;
 
         $keys = array_keys($snapshot);
-
-        return $keys[0] ;
+        var_dump($snapshot) ;
+        //return $keys[0] ;
     }
     function getUserFollowers($userId){
         $firebase = app('firebase') ;
