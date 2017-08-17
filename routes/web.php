@@ -19,6 +19,6 @@ Route::get('/', function () {
 //route for verification token
 Route::get('/facebookAPI', "MainController@facebookReceive")->middleware("verifyFacebookToken") ;
 // facebook send message to
-Route::post('/facebookAPI', "MainController@facebookReceive")->middleware("verifyFacebookToken") ;
+Route::post('/facebookAPI', "MainController@facebookReceive") ;
 
 Route::get('getUser', "MainController@getUserTest");

@@ -18,7 +18,6 @@ class FacebookTokenMiddleware
         if ($request->input("hub_mode") === "subscribe" && $request->input("hub_verify_token") === env("FACEBOOK_TOKEN")) {
             return response($request->input("hub_challenge"), 200 ) ;
         }
-        response($request, 200 ) ;
         return $next($request);
     }
 }
