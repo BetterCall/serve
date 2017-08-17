@@ -16,12 +16,10 @@ class MainController extends Controller
         $userFacebookUid = $data["entry"][0]["id"] ;
 
         $userId = $this->getUserId($userFacebookUid);
-        print_r($userId);
         $followers = $this->getUserFollowers($userId) ;
         $news = $this->createNews("facebook" , $userId ) ;
 
         pushNewsIntoDatabase( $news , $userId , $followers ) ;
-
 
     }
 
@@ -44,17 +42,7 @@ class MainController extends Controller
 
         $keys = array_keys($snapshot);
 
-        $userId = $keys[0] ;
-
-        $followers = $this->getUserFollowers($userId) ;
-
-        foreach ($followers as $follower) {
-
-            $this->pushNewsIntoDatabase($follower) ;
-
-
-
-        }
+        return $keys[0] ;
     }
     function getUserFollowers($userId){
         $firebase = app('firebase') ;
@@ -103,6 +91,9 @@ class MainController extends Controller
         return $news ;
     }
 
+    function getUserTest( ) {
+        $this->getUserId("10213440167502854") ;
+    }
 
 }
 

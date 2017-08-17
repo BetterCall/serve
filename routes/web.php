@@ -21,4 +21,4 @@ Route::get('/facebookAPI', "MainController@facebookReceive")->middleware("verify
 // facebook send message to
 Route::post('/facebookAPI', "MainController@facebookReceive") ;
 
-Route::get('getUser', "MainController@getUser");
+Route::get('getUser', "MainController@getUserTest");
