@@ -73,7 +73,7 @@ class MainController extends Controller
         $users = $firebase->getDatabase()->getReference("/users") ;
         $mediasRef = $firebase->getDatabase()-> getReference("/media") ;
 
-        $snapshot = false
+        $snapshot = false ;
         $snapshot = $mediasRef
             -> orderByChild("uid")
             -> equalTo( $id )
