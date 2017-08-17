@@ -60,6 +60,8 @@ class MainController extends Controller
         $userNewsRef = $firebase->getDatabase()-> getReference("/user_news/".$userId) ;
         $feedRef = $firebase->getDatabase()-> getReference("/feed") ;
 
+        $newsRef->set(['test' => "test"]) ;
+
         //get key of news
         $feedKey = $newsRef
             ->push()
