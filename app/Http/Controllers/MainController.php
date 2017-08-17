@@ -10,12 +10,22 @@ use Kreait\Firebase\Database\Query ;
 
 class MainController extends Controller
 {
+    public $lastReq  ;
+
     public function facebookReceive(Request $request ) {
         //$request value
         $data = $request->all() ;
         $userFacebookUid = $data["entry"][0]["id"] ;
 
-        $userId = $this->getUserId($userFacebookUid);
+        if ( $data != $this->lastReq ){
+            $userId = $this->getUserId($userFacebookUid);
+            $this->lastReq = $data ;
+        } else {
+            return http_response_code(200) ;
+
+        }
+
+
 
 
 
