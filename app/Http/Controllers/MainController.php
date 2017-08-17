@@ -34,7 +34,7 @@ class MainController extends Controller
         // get the user having this facebook id
         $snapshot = false ;
         $snapshot = $users
-            ->orderByKey("uid")
+            ->orderByChild("uid")
             ->equalTo($facebookUid)
             ->getSnapshot()
             ->getValue()
