@@ -32,7 +32,7 @@ class MainController extends Controller
         // firebase references
         $firebase = app('firebase') ;
         $social = $firebase->getDatabase()->getReference("/social/facebook/". $facebookUid) ;
-        $users = $firebase->getDatabase()->getReference("/media") ;
+        //$users = $firebase->getDatabase()->getReference("/media") ;
 
         // get the user having this facebook id
         $snapshot = false ;
