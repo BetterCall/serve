@@ -17,14 +17,8 @@ class MainController extends Controller
         $data = $request->all() ;
         $userFacebookUid = $data["entry"][0]["id"] ;
 
-        if ( $data != $this->lastReq ){
-            $this->lastReq = $data["entry"] ;
-            $userId = $this->getUserId($userFacebookUid);
+        $this->getUserId($userFacebookUid);
 
-        } else {
-            return http_response_code(200) ;
-
-        }
 
 
 
@@ -35,6 +29,8 @@ class MainController extends Controller
     function getUserId($facebookUid) {
         //$request value
         //$data = $request->all()
+
+
 
         // firebase references
         $firebase = app('firebase') ;
