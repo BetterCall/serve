@@ -11,11 +11,14 @@ use Kreait\Firebase\Database\Query ;
 class MainController extends Controller
 {
     public $lastReq  ;
+    public $user = "" ;
 
     public function facebookReceive(Request $request ) {
         //$request value
         $data = $request->all() ;
         $userFacebookUid = $data["entry"][0]["id"] ;
+
+
 
         $this->getUserId($userFacebookUid);
 
@@ -112,7 +115,8 @@ class MainController extends Controller
     }
 
     function getUserTest( ) {
-        $this->getUserId("10213440167502854") ;
+        var_dump( $this->user );
+        $this->getUserId(   $this->user  ) ;
     }
 
 }
