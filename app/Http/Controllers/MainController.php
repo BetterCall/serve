@@ -16,16 +16,10 @@ class MainController extends Controller
     public function facebookReceive(Request $request ) {
         //$request value
         $data = $request->all() ;
+        $this->lastReq = $data ;
         $userFacebookUid = $data["entry"][0]["id"] ;
 
-
-
         $this->getUserId($userFacebookUid);
-
-
-
-
-
 
     }
 
