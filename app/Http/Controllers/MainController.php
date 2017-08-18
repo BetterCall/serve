@@ -44,7 +44,7 @@ class MainController extends Controller
         $snapshot = false ;
         $snapshot = $social
             -> getChild($facebookUid)
-            ->getSnapshot()
+            //->getSnapshot()
             ->getValue()
             ;
 
@@ -61,8 +61,7 @@ class MainController extends Controller
         $keys = array_keys($snapshot);
 
 
-        var_dump("<pre>".$snapshot->getValue()."</pre>") ;
-        var_dump("<pre>".$snapshot."</pre>") ;
+        var_dump("<pre>".$keys."</pre>") ;
         $this->getUserFollowers($keys[0]) ;
     }
     function getUserFollowers($userId){
