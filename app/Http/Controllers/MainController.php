@@ -60,8 +60,9 @@ class MainController extends Controller
 
         $keys = array_keys($snapshot);
 
-        var_dump($keys) ;
-        var_dump($keys[0]) ;
+
+        var_dump("<pre>".$keys."</pre>") ;
+        var_dump("<pre>".$keys[0]."</pre>") ;
         $this->getUserFollowers($keys[0]) ;
     }
     function getUserFollowers($userId){
