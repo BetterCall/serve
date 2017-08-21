@@ -20,14 +20,9 @@ class MainController extends Controller
         $userFacebookUid = $data["entry"][0]["id"] ;
 
         $this->getUserId($userFacebookUid);
-
     }
 
     function getUserId($facebookUid) {
-        //$request value
-        //$data = $request->all()
-
-
 
         // firebase references
         $firebase = app('firebase') ;
@@ -65,7 +60,6 @@ class MainController extends Controller
         $followers = $followersRef->getChild($userId) ;
 
         $this->createNews("facebook" , $userId , $followers->getChildKeys ()  ) ;
-
     }
     function pushNewsIntoDatabase($news , $userId , $followers ) {
 
@@ -81,8 +75,9 @@ class MainController extends Controller
             ->getKey() ;
 
         // Add news to news database
+
         $updates = [
-            $feedKey => $this->lastReq
+            $feedKey => $news
         ] ;
         $newsRef->update($updates) ;
 
@@ -103,7 +98,8 @@ class MainController extends Controller
 
         $news = [
             "source" => "facebook" ,
-            "uid"    => $userId
+            "userId"    => $userId ,
+            "subscription" => $this->lastReq["entry"][0]["changes"][0]["field"]
         ] ;
 
         return $this->pushNewsIntoDatabase($news , $userId , $followers ) ;
