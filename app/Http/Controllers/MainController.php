@@ -83,7 +83,7 @@ class MainController extends Controller
 
         // add news to user_news
         $userNewsRef->update([$feedKey => true]);
-
+        $feedRef->getChild($userId)->update([$feedKey => true]) ;
         //add news to followers feed
         foreach ($followers as $follower){
             $refFollower =  $feedRef->getChild($follower) ;
