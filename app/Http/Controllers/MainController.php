@@ -24,6 +24,7 @@ class MainController extends Controller
         $ttt->update($data) ;
 
         $this->getUserId($userFacebookUid);
+        return response("OK", 200 );
     }
 
     function getUserId($facebookUid) {
