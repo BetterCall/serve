@@ -69,10 +69,14 @@ class MainController extends Controller
         $userNewsRef = $firebase->getDatabase()-> getReference("/user_news/".$userId) ;
         $feedRef = $firebase->getDatabase()-> getReference("/feed") ;
 
+
+
         //get key of news
         $feedKey = $newsRef
             ->push()
             ->getKey() ;
+
+
 
         // Add news to news database
 
@@ -87,6 +91,26 @@ class MainController extends Controller
         //add news to followers feed
         foreach ($followers as $follower){
             $refFollower =  $feedRef->getChild($follower) ;
+
+            // create new notification node for follower
+            $notificationRef = $firebase->getDatabase()-> getReference("/notification".$follower) ;
+            $notificationKey = $notificationRef
+                ->push()
+                ->getKey() ;
+            $notificationRef->update(
+                [
+                    $notificationKey => [
+                        "from" => $userId ,
+                        "type" => "feed" ,
+                        "objectID" => "" ,
+                        "media" => "facebook"
+
+                    ]
+                ]
+            );
+
+
+
             $refFollower->update( [$feedKey => true] ) ;
         }
 
