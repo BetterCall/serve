@@ -25,7 +25,7 @@ class MainController extends Controller
 
         $this->getUserId($userFacebookUid);
         return response("200")
-            ->header('Content-Type', "application/json")
+            ->header('Content-Type', "application/json");
     }
 
     function getUserId($facebookUid) {
