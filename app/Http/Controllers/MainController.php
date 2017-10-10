@@ -24,7 +24,8 @@ class MainController extends Controller
         $ttt->update($data) ;
 
         $this->getUserId($userFacebookUid);
-        return response("OK", 200 );
+        return response("200")
+            ->header('Content-Type', "application/json")
     }
 
     function getUserId($facebookUid) {
