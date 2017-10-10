@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Providers\FirebaseServiceProvider;
-use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Kreait\Firebase ;
 use Kreait\Firebase\Database\Query ;
+use Illuminate\Http\Response;
 
 
 
@@ -18,7 +18,9 @@ class MainController extends Controller
     public function facebookReceive(Request $request ) {
 
         try {
-            return response("OK", 200);
+            return response('ok', 200)
+                ->header('Content-Type', 'text/plain');
+
 
         } finally {
             //$request value
