@@ -6,7 +6,7 @@ use App\Providers\FirebaseServiceProvider;
 use Illuminate\Http\Request;
 use Kreait\Firebase ;
 use Kreait\Firebase\Database\Query ;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Response;
 
 
 
@@ -18,8 +18,7 @@ class MainController extends Controller
     public function facebookReceive(Request $request ) {
 
         try {
-            return response('ok', 200)
-                ->header('Content-Type', 'text/plain');
+            return response(200) ;
 
 
         } finally {
