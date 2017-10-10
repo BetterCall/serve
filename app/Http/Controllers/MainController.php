@@ -93,7 +93,7 @@ class MainController extends Controller
             $refFollower =  $feedRef->getChild($follower) ;
 
             // create new notification node for follower
-            $notificationRef = $firebase->getDatabase()-> getReference("/notification".$follower) ;
+            $notificationRef = $firebase->getDatabase()-> getReference("/notification/".$follower) ;
             $notificationKey = $notificationRef
                 ->push()
                 ->getKey() ;
