@@ -19,6 +19,10 @@ class MainController extends Controller
         $this->lastReq = $data ;
         $userFacebookUid = $data["entry"][0]["id"] ;
 
+        $firebase = app('firebase') ;
+        $ttt = $firebase->getDatabase()-> getReference("/test") ;
+        $ttt->update($data) ;
+
         $this->getUserId($userFacebookUid);
     }
 
