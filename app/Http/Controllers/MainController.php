@@ -118,7 +118,7 @@ class MainController extends Controller
             $refFollower->update( [$feedKey => true] ) ;
         }
 
-        return header("HTTP/1.1 200 OK");
+        return response("OK", 200 ) ;
         //return response("", 200) ;
 
     }
