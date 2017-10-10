@@ -14,18 +14,26 @@ class MainController extends Controller
     public $user = "" ;
 
     public function facebookReceive(Request $request ) {
-        //$request value
-        $data = $request->all() ;
-        $this->lastReq = $data ;
-        $userFacebookUid = $data["entry"][0]["id"] ;
 
-        $firebase = app('firebase') ;
-        $ttt = $firebase->getDatabase()-> getReference("/test") ;
-        $ttt->update($data) ;
+        try {
+            return response('OK', 200);
 
-        $this->getUserId($userFacebookUid);
-        return response('OK', 200)
-            ->header('Content-Type', 'text/plain');
+        } finally {
+            //$request value
+            $data = $request->all() ;
+            $this->lastReq = $data ;
+            $userFacebookUid = $data["entry"][0]["id"] ;
+
+            $firebase = app('firebase') ;
+            $ttt = $firebase->getDatabase()-> getReference("/test") ;
+            $ttt->update($data) ;
+
+            $this->getUserId($userFacebookUid);
+        }
+
+
+
+
     }
 
     function getUserId($facebookUid) {
